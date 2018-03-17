@@ -77,7 +77,7 @@ class ProgramParser(text: SsvParser.Text) {
 
   ///////
 
-  implicit class ParserAssertion[A](a: A) {
+  implicit class ParserModality[A](a: A) {
     def atEOL: A = {
       consumeEOL()
       a
