@@ -2,12 +2,12 @@ package com.mowitnow
 
 import org.scalatest.FunSpec
 
-class ParserTest extends FunSpec {
+class SsvParserTest extends FunSpec {
 
   describe("The parser") {
 
     it("parses split lines and words on EOL and whitespaces") {
-      assert(Parser.parse(
+      assert(SsvParser.ssvParse(
         """A B
           |1 2,3 4.5
           |z w""".stripMargin) ==
@@ -19,7 +19,7 @@ class ParserTest extends FunSpec {
     }
 
     it("ignores extra spaces") {
-      assert(Parser.parse(" A B\t  C   \nD  F") ==
+      assert(SsvParser.ssvParse(" A B\t  C   \nD  F") ==
         Seq(
           Seq("A", "B", "C"),
           Seq("D", "F")
@@ -27,7 +27,7 @@ class ParserTest extends FunSpec {
     }
 
     it("ignores trailing lines only") {
-      assert(Parser.parse(
+      assert(SsvParser.ssvParse(
         """A B
           |
           |D E
@@ -43,11 +43,11 @@ class ParserTest extends FunSpec {
     }
 
     it("parses empty inputs") {
-      assert(Parser.parse("") == Seq.empty)
-      assert(Parser.parse(" ") == Seq.empty)
-      assert(Parser.parse("\n") == Seq.empty)
-      assert(Parser.parse("\n ") == Seq.empty)
-      assert(Parser.parse(" \n ") == Seq.empty)
+      assert(SsvParser.ssvParse("") == Seq.empty)
+      assert(SsvParser.ssvParse(" ") == Seq.empty)
+      assert(SsvParser.ssvParse("\n") == Seq.empty)
+      assert(SsvParser.ssvParse("\n ") == Seq.empty)
+      assert(SsvParser.ssvParse(" \n ") == Seq.empty)
     }
   }
 

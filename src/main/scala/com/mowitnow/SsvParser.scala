@@ -1,9 +1,9 @@
 package com.mowitnow
 
-object Parser {
+object SsvParser {
 
-  type Text = Seq[Line]
-  type Line = Seq[String]
+  type Text = IndexedSeq[Line]
+  type Line = IndexedSeq[String]
 
   /**
     * Parses a space separated value text. Trailing empty lines are ignored
@@ -11,11 +11,11 @@ object Parser {
     * @param text The text to parse
     * @return The parsed text, as a sequence of lines (i.e. a sequence of strings)
     */
-  def parse(text: String): Text = {
+  def ssvParse(text: String): Text = {
     val allLines =
       for (line <- text.split("\r?\n").toIndexedSeq)
         yield line.trim match {
-          case "" => Seq.empty // String.split would returns a seq with an empty String instead of an empty seq.
+          case "" => IndexedSeq.empty // String.split would returns a seq with an empty String instead of an empty seq.
           case trimmed => trimmed.split("\\s+").toVector
         }
 
