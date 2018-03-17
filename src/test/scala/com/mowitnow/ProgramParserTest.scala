@@ -45,7 +45,7 @@ class ProgramParserTest extends FunSpec {
         )
       )
 
-      assert(ProgramParser(program) == model)
+      assert(ProgramParser(program).consumeProgram() == model)
     }
   }
 

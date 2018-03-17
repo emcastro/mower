@@ -5,6 +5,8 @@ import com.mowitnow.CoordinateSystem.Pos
 import com.mowitnow.Direction.Direction
 import com.mowitnow.Utils.generateWhile
 
+import scala.language.postfixOps
+
 /**
   * Stateful object that parses lines of words and produce a MowerProgram
   *
@@ -40,7 +42,7 @@ class ProgramParser(text: SsvParser.Text) {
 
   def consumeMowerProgram(): MowerProgram = {
     MowerProgram(
-      consumePoint(),
+      consumePoint(), // TODO ask the customer if it is really a single digit, or simply a non-negative number
       consumeDirection() atEOL,
       consumeCommands() atEOL
     )
@@ -58,6 +60,8 @@ class ProgramParser(text: SsvParser.Text) {
   def consumeEOL(): Unit = {
     // TODO parse error
     // assert that there is nothing left on the line
+    assert(isEOL)
+
     currentLine += 1
     currentWord = 0
   }
@@ -66,6 +70,8 @@ class ProgramParser(text: SsvParser.Text) {
     // TODO parse error
     assert(isEOF)
   }
+
+  def isEOL: Boolean = currentWord == text(currentLine).size
 
   def isEOF: Boolean = currentLine == text.size
 
@@ -86,7 +92,7 @@ class ProgramParser(text: SsvParser.Text) {
 }
 
 object ProgramParser {
-  def apply(text: String): Program = new ProgramParser(SsvParser.ssvParse(text)).consumeProgram()
+  def apply(text: String): ProgramParser = new ProgramParser(SsvParser.ssvParse(text))
 }
 
 
