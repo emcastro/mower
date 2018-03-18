@@ -1,23 +1,8 @@
 package com.mowitnow
 
-import com.mowitnow.Command.Command
-import com.mowitnow.CoordinateSystem._
+import com.mowitnow.CoordinateSystem.Pos
 import com.mowitnow.Direction.Direction
 
-
-case class Program
-(
-  lawnTopRight: Point,
-  mowerPrograms: Seq[MowerProgram]
-)
-
-
-case class MowerProgram
-(
-  startPosition: Point,
-  startDirection: Direction,
-  commands: Seq[Command]
-)
 
 case class Point(x: Pos, y: Pos) {
   def goNorth = Point(x, y + 1)
@@ -34,11 +19,6 @@ case class Point(x: Pos, y: Pos) {
     case Direction.W => goWest
     case Direction.E => goEast
   }
-}
-
-object Command extends Enumeration {
-  type Command = Value
-  val A, G, D = Value
 }
 
 object Direction extends Enumeration {
