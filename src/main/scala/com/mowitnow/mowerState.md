@@ -7,7 +7,7 @@ Many representation are possible:
    approach are the difficulty of keeping track of past states of the system without doing a global copy of all the 
    world. It is not is the immutable state tradition of languages such as Scala.
  * A representation from the point of view of each mower – after we build a _mower_, not a _lawn_ nor a more global 
-   system. The representation is less compllex,  making it simpler, and more easy to 
+   system. The representation is less complex,  making it simpler, and more easy to 
    implement using immutable objects.
    
 We choose the second representation, biased toward the state of each mower only.

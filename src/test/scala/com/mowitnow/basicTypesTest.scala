@@ -3,7 +3,7 @@ package com.mowitnow
 import com.mowitnow.Direction._
 import org.scalatest.FunSpec
 
-class DirectionTest extends FunSpec {
+class basicTypesTest extends FunSpec {
 
   describe("Direction") {
     it("returns to self when turning four times") {
@@ -28,11 +28,6 @@ class DirectionTest extends FunSpec {
       checkAllVisited(turnRight)
     }
   }
-
-}
-
-
-class PointTest extends FunSpec {
 
   describe("Point") {
     it("returns to self when drawing a square") {
