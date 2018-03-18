@@ -9,7 +9,7 @@ import scala.io.Source
 class MainTest extends FunSpec {
 
   def runMain(programResource: String): String = {
-    val m = new ProgramRunner{}
+    val m = new ProgramRunner {}
 
     val outBuffer = new ByteArrayOutputStream()
     val outStream = new PrintStream(outBuffer)
@@ -30,8 +30,14 @@ class MainTest extends FunSpec {
         """.stripMargin.trim)
     }
 
-    it("runs ") {
+    it("runs without escaping from the lawn") {
       assert(runMain("ravingmower.mow") == "5 0 S")
+    }
+
+    (1 to 4).foreach { i =>
+      it("fails on bad programs - " + i) {
+        assertThrows[Throwable](runMain(s"lawn-error$i.mow"))
+      }
     }
 
   }

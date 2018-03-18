@@ -31,3 +31,5 @@ or, if you want to take the program from `stdin`
                            taken from stdin)
 ```
 
+## Roadmap
+Improve the parser so that it produces nice error messages when the input program is malformed.
